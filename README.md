@@ -3,7 +3,6 @@ Docker instance for Udacity SDC ND Term1 - GPU version
 
 The image is built using Ubuntu14.04/cuda8.0/cudnn5 as base. This is based on Ubuntu 14.04. Image based on Ubuntu 16.04 is still work in progress.
 Refer: 	https://hub.docker.com/r/nvidia/cuda/
-	      https://github.com/NVIDIA/nvidia-docker/wiki/CUDA#requirements
 
 
 Nvidia-docker need not be seperately installed. Dockerfile builds an image for nvidia/cuda/cudnn as well.
