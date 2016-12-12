@@ -70,6 +70,7 @@ Note the use of nvidia-docker rather than just docker.
 		$ jupyter notebook --port=8888 --ip=0.0.0.0
 
 	From the browser, type-in "localhost:8888"
+	
 	Run "Lane Finding Demo" and check if the demo runs successfully without errors.
 
 2.   Check tensorflow, gpu, keras
@@ -78,7 +79,8 @@ Note the use of nvidia-docker rather than just docker.
 		$ curl -sSL https://github.com/fchollet/keras/raw/master/examples/mnist_mlp.py | python
 
 	Verify that terminal prints messages for tensorflow and esblishing connections to GPU.
-	check the output.
+	
+	Check the output.
 
 	60000 train samples
 	10000 test samples
