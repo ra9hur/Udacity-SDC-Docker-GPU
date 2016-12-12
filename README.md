@@ -2,7 +2,8 @@
 Docker instance for Udacity SDC ND Term1 - GPU version
 
 The image is built using Ubuntu14.04/cuda8.0/cudnn5 as base. Image based on Ubuntu 16.04 is still work in progress.
-	Refer: 	https://hub.docker.com/r/nvidia/cuda/
+
+Refer: 	https://hub.docker.com/r/nvidia/cuda/
 
 
 Nvidia-docker need not be seperately installed. Dockerfile builds an image for nvidia/cuda/cudnn as well.
@@ -23,7 +24,8 @@ Nvidia-docker need not be seperately installed. Dockerfile builds an image for n
 
 1. docker installation
   	Install Docker following the installation guide for your platform.
-  	For details- https://docs.docker.com/engine/installation/
+  	
+	For details- https://docs.docker.com/engine/installation/
 
 2. Nvidia-drivers
 	Install supported nvidia drivers - 367 and above
@@ -31,6 +33,7 @@ Nvidia-docker need not be seperately installed. Dockerfile builds an image for n
 
 3. CUDA-capable GPU
 	Check if your system has CUDA-capable GPU
+	
 	Refer https://developer.nvidia.com/cuda-gpus
 
 
@@ -57,23 +60,25 @@ Note the use of nvidia-docker rather than just docker.
 
 # Sanity check
 
-1.   Check opencv3. Run "Lane Finding Demo" as in the below link
+1.   Check opencv3. Run "Lane Finding Demo" as in the following link
+	
 	https://medium.com/self-driving-cars/lane-finding-demo-bd834d7928a9#.i32ooenzi
+	
 	Clone "lane-demo" package to your host folder
 	From the nvidia-docker terminal, run - 
 
 		$ jupyter notebook --port=8888 --ip=0.0.0.0
 
-From the browser, type-in "localhost:8888"
-Run "Lane Finding Demo" and check if the demo runs successfully without errors.
+	From the browser, type-in "localhost:8888"
+	Run "Lane Finding Demo" and check if the demo runs successfully without errors.
 
 2.   Check tensorflow, gpu, keras
-      	From the nvidia-docker terminal, run -
+      From the nvidia-docker terminal, run -
 		
 		$ curl -sSL https://github.com/fchollet/keras/raw/master/examples/mnist_mlp.py | python
 
-Verify that terminal prints messages for tensorflow and esblishing connections to GPU
-check the output.
+	Verify that terminal prints messages for tensorflow and esblishing connections to GPU.
+	check the output.
 
 	60000 train samples
 	10000 test samples
