@@ -1,7 +1,7 @@
 # SDC-Term1-Docker-GPU
 Docker instance for Udacity SDC ND Term1 - GPU version
 
-The image is built using Ubuntu14.04/cuda8.0/cudnn5 as base. This is based on Ubuntu 14.04. Image based on Ubuntu 16.04 is still work in progress.
+The image is built using Ubuntu14.04/cuda8.0/cudnn5 as base. Image based on Ubuntu 16.04 is still work in progress.
 Refer: 	https://hub.docker.com/r/nvidia/cuda/
 
 
@@ -24,40 +24,39 @@ Docker
   Install Docker following the installation guide for your platform.
   For details- https://docs.docker.com/engine/installation/
 
-  1. docker installation
-  sudo apt-get update
-  sudo apt-get install apt-transport-https ca-certificates
-  sudo apt-key adv \
-  --keyserver hkp://ha.pool.sks-keyservers.net:80 \
-  --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+1. docker installation
+ sudo apt-get update
+ sudo apt-get install apt-transport-https ca-certificates
+ sudo apt-key adv \
+--keyserver hkp://ha.pool.sks-keyservers.net:80 \
+--recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
-  echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
+echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
 
-  sudo apt-get update
-  sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
-  sudo apt-get install docker-engine
-  sudo service docker start
+sudo apt-get update
+sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
+sudo apt-get install docker-engine
+sudo service docker start
 
-  setup docker for another user
-  sudo groupadd docker
-  sudo gpasswd -a ${USER} docker
-  sudo service docker restart
+setup docker for another user
+ sudo groupadd docker
+ sudo gpasswd -a ${USER} docker
+ sudo service docker restart
 
-  check docker installation
-  docker run hello-world
-  
+check docker installation
+ docker run hello-world
 
-  2. Nvidia-drivers
-  Install supported nvidia drivers - 367 and above
+2. Nvidia-drivers
+Install supported nvidia drivers - 367 and above
 
 
-  3. CUDA-capable GPU
-  Check if your system has CUDA-capable GPU
-  Refer https://developer.nvidia.com/cuda-gpus
+3. CUDA-capable GPU
+Check if your system has CUDA-capable GPU
+Refer https://developer.nvidia.com/cuda-gpus
 
 
 # Build the image
-Place the Dockerfile-<version> (rename the file to "Dockerfile") in the current working directory and execute -
+Place the Dockerfile in the current working directory and execute -
 $ docker build -t <dockerhub userid>/udacitysdc-term1:gpu .
 
 Once the image is built successfully, do a quick check with,
@@ -75,44 +74,23 @@ $ nvidia-docker run -it -v $PWD:/src -p 8888:8888 <dockerhub userid>/udacitysdc-
 
 Note the use of nvidia-docker rather than just docker
 
-Parameters
--it
-This creates an interactive terminal you can use to iteract with your container
-
--p 8888:8888 -p 6006:6006
-This exposes the ports inside the container so they can be accessed from the host. The format is -p <host-port>:<container-port>. The default iPython Notebook runs on port 8888 and Tensorboard on 6006
-
--v $PWD:/src
-This shares the folder $PWD on your host machine to /src inside your container. Any data written to this folder by the container will be persistent. You can modify this to anything of the format -v /local/shared/folder:/shared/folder/in/container/. See Docker container persistence
-
-<dockerhub userid>/udacitysdc-term1:gpu
-This the image that you want to run. The format is image:tag. In our case, we use the image udacitysdc-term1 and tag gpu or cpu to spin up the appropriate image
-
-bash
-This provides the default command when the container is started. Even if this was not provided, bash is the default command and just starts a Bash session. You can modify this to be whatever you'd like to be executed when your container starts. For example, you can execute 
-nvidia-docker run -it -p 8888:8888 <dockerhub userid>/udacitysdc-term1:gpu jupyter notebook. 
-
-This will execute the command jupyter notebook and starts your Jupyter Notebook for you when the container starts
-
 
 
 # Sanity check
 
 1.   Check opencv3. Run "Lane Finding Demo" as in the below link
-	    https://medium.com/self-driving-cars/lane-finding-demo-bd834d7928a9#.i32ooenzi
-
-      a) Clone "lane-demo" package to your host folder
-      b) From the nvidia-docker terminal, run - 
-	        $ jupyter notebook --port=8888 --ip=0.0.0.0
-      c) From the browser, type-in "localhost:8888"
-      d) Run "Lane Finding Demo" and check if the demo runs successfully without errors.
+	https://medium.com/self-driving-cars/lane-finding-demo-bd834d7928a9#.i32ooenzi
+Clone "lane-demo" package to your host folder
+From the nvidia-docker terminal, run - 
+	$ jupyter notebook --port=8888 --ip=0.0.0.0
+From the browser, type-in "localhost:8888"
+Run "Lane Finding Demo" and check if the demo runs successfully without errors.
 
 2.   Check tensorflow, gpu, keras
       From the nvidia-docker terminal, run -
-	    $ curl -sSL https://github.com/fchollet/keras/raw/master/examples/mnist_mlp.py | python
-
-      a) Verify that terminal prints message for tensorflow and esblishing connections to GPU
-      b) check the output.
+	$ curl -sSL https://github.com/fchollet/keras/raw/master/examples/mnist_mlp.py | python
+Verify that terminal prints messages for tensorflow and esblishing connections to GPU
+check the output.
 
 60000 train samples
 10000 test samples
