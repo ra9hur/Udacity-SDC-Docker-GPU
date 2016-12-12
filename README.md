@@ -38,7 +38,7 @@ Nvidia-docker need not be seperately installed. Dockerfile builds an image for n
 
 
 # Build the image
-	Place the Dockerfile in the current working directory and execute -
+	Place the Dockerfile-<version> (rename to “Dockerfile”) in the current working directory and execute -
 		$ docker build -t <dockerhub userid>/udacitysdc-term1:gpu .
 
 	Once the image is built successfully, do a quick check with,
@@ -50,7 +50,7 @@ Nvidia-docker need not be seperately installed. Dockerfile builds an image for n
 
 
 # Run the docker image in a container
-Once we've built the image, we have all the required softwares installed in it. We can now spin up one or more containers using this image.
+We can now spin up one or more containers using this image.
 
 	$ nvidia-docker run -it -v $PWD:/src -p 8888:8888 <dockerhub userid>/udacitysdc-term1:gpu bash
 
