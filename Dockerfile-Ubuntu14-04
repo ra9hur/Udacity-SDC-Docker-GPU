@@ -1,0 +1,55 @@
+FROM nvidia/cuda:8.0-cudnn5-runtime
+
+ENV CONDA_DIR /opt/conda
+ENV PATH $CONDA_DIR/bin:$PATH
+
+ARG miniconda_version=4.1.11
+#RUN mkdir -p $CONDA_DIR && \
+RUN echo export PATH=$CONDA_DIR/bin:'$PATH' > /etc/profile.d/conda.sh && \
+    apt-get update && \
+    apt-get install -y wget git libhdf5-dev g++ graphviz && \
+    wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${miniconda_version}-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
+    rm ~/miniconda.sh
+
+ENV NB_USER keras
+ENV NB_UID 1000
+
+RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
+#    mkdir -p $CONDA_DIR && \
+    chown keras $CONDA_DIR -R && \
+    mkdir -p /src && \
+    chown keras /src
+
+# Python
+#   conda remove mkl mkl-service && \	: nomkl (intel math kernel library), instead openblas used to save 100MB space
+#   You are using pip version 8.1.2, however version 9.0.1 is available. "pip install --upgrade pip" included
+ARG python_version=3.5.2
+ARG tensorflow_version=0.12.0rc0-cp35-cp35m
+RUN conda install -y python=${python_version} && \
+    pip install --upgrade pip && \
+    pip install https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-${tensorflow_version}-linux_x86_64.whl && \
+    pip install ipdb pytest pytest-cov python-coveralls coverage==3.7.1 pytest-xdist pep8 pytest-pep8 pydot_ng && \
+    conda install nomkl Pillow scikit-learn notebook pandas matplotlib nose pyyaml six h5py && \
+    pip install moviepy && \
+    conda clean -yt
+
+# opencv3
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libgomp1 libgtk2.0 && \
+    conda install -c menpo opencv3    
+
+# Keras
+USER keras
+RUN pip install git+git://github.com/fchollet/keras.git
+ENV KERAS_BACKEND=tensorflow
+ENV PYTHONPATH='/src/:$PYTHONPATH'
+
+WORKDIR /src
+
+# TensorBoard
+EXPOSE 6006
+# IPython
+EXPOSE 8888
+
+CMD ["/bin/bash"]
