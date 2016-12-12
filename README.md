@@ -64,7 +64,7 @@ Note the use of nvidia-docker rather than just docker.
 	
 	https://medium.com/self-driving-cars/lane-finding-demo-bd834d7928a9#.i32ooenzi
 	
-	Clone "lane-demo" package to your host folder
+	Clone "lane-demo" package to your host folder ($PWD on host that maps to /src on Docker).
 	From the nvidia-docker terminal, run - 
 
 		$ jupyter notebook --port=8888 --ip=0.0.0.0
