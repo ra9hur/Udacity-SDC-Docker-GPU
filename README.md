@@ -82,18 +82,18 @@ Note the use of nvidia-docker rather than just docker.
 	
 	Check the output.
 
-	60000 train samples
-	10000 test samples
-	Train on 60000 samples, validate on 10000 samples
-	Epoch 0
-	5s - loss: 0.4356 - acc: 0.8716 - val_loss: 0.1863 - val_acc: 0.9421
-	.....
-	.....
-	.....
-	Epoch 19
-	5s - loss: 0.0383 - acc: 0.9874 - val_loss: 0.0705 - val_acc: 0.9820
-	Test score: 0.0704572771238
-	Test accuracy: 0.982
+		60000 train samples
+		10000 test samples
+		Train on 60000 samples, validate on 10000 samples
+		Epoch 0
+		5s - loss: 0.4356 - acc: 0.8716 - val_loss: 0.1863 - val_acc: 0.9421
+		.....
+		.....
+		.....
+		Epoch 19
+		5s - loss: 0.0383 - acc: 0.9874 - val_loss: 0.0705 - val_acc: 0.9820
+		Test score: 0.0704572771238
+		Test accuracy: 0.982
 
 
 # References:
