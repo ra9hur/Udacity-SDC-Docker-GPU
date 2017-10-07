@@ -3,7 +3,8 @@
 
 
 Term 1
-    Ubuntu 16.04
+
+	Ubuntu 16.04
     CUDA 8.0
     cuDNN v6
     python_version=3.5.2
@@ -16,6 +17,7 @@ Term 1
 
 
 Term 3
+
     Ubuntu 16.04
     CUDA 8.0
     cuDNN v6
