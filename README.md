@@ -1,16 +1,11 @@
-# SDC-Term1-Docker-GPU
-Docker instance for Udacity SDC ND Term1 - GPU version
-
-The image is built using Ubuntu14.04/cuda8.0/cudnn5 as base. Image based on Ubuntu 16.04 is still work in progress.
-
-Refer: 	https://hub.docker.com/r/nvidia/cuda/
+# Udacity-SDC-Docker-GPU
+- Docker files for Udacity SDC ND Term 1 and Term 3- GPU version
 
 
-Nvidia-docker need not be seperately installed. Dockerfile builds an image for nvidia/cuda/cudnn as well.
-
-    Ubuntu 		# 14.04 for now. 16.04 should be available shortly
+Term 1
+    Ubuntu 16.04
     CUDA 8.0
-    cuDNN v5
+    cuDNN v6
     python_version=3.5.2
     miniconda_version=4.1.11
     tensorflow_version=0.12.0rc0
@@ -18,6 +13,26 @@ Nvidia-docker need not be seperately installed. Dockerfile builds an image for n
     iPython/Jupyter Notebook
     Numpy, SciPy, Pandas, Scikit Learn, Matplotlib
     opencv3, moviepy
+
+
+Term 3
+    Ubuntu 16.04
+    CUDA 8.0
+    cuDNN v6
+    ROS kinetic
+    ROS kinetic perception
+	DataspeedInc/dbw_mkz_ros
+	Flask>=0.11.1
+	attrdict>=2.0.0
+	eventlet>=0.19.0
+	python-socketio>=1.6.1
+	numpy>=1.13.1
+	Pillow>=2.2.1
+	scipy
+	tensorflow-gpu (latest)
+	keras (latest)
+	h5py
+
 
 
 # Prerequisites
@@ -38,21 +53,21 @@ Nvidia-docker need not be seperately installed. Dockerfile builds an image for n
 
 
 # Build the image
-	Place the Dockerfile-<version> (rename to “Dockerfile”) in the current working directory and execute -
-		$ docker build -t <dockerhub userid>/udacitysdc-term1:gpu .
+	Place the Dockerfile-<term> (rename to “Dockerfile”) in the current working directory and execute -
+		$ docker build -t <dockerhub userid>/udacitysdc-<term>:gpu .
 
 	Once the image is built successfully, do a quick check with,
 		$ docker images
 
 	You should find two images listed. 
-		1. <dockerhub userid>/udacitysdc-term1:gpu
+		1. <dockerhub userid>/udacitysdc-<term>:gpu
 		2. nvidia/cuda
 
 
 # Run the docker image in a container
 We can now spin up one or more containers using this image.
 
-	$ nvidia-docker run -it -v $PWD:/src -p 8888:8888 <dockerhub userid>/udacitysdc-term1:gpu bash
+	$ nvidia-docker run -it -v $PWD:/src -p 8888:8888 <dockerhub userid>/udacitysdc-<term>:gpu bash
 
 Note the use of nvidia-docker rather than just docker.
 
@@ -60,7 +75,7 @@ Note the use of nvidia-docker rather than just docker.
 
 # Sanity check
 
-1.   Check opencv3. Run "Lane Finding Demo" as in the following link
+1.   Check opencv3 for term 1. Run "Lane Finding Demo" as in the following link
 	
 	https://medium.com/self-driving-cars/lane-finding-demo-bd834d7928a9#.i32ooenzi
 	
